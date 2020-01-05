@@ -1,6 +1,6 @@
-package com.example.zvigernotes.callbacks;
+package com.example.notes.callbacks;
 
-import com.example.zvigernotes.model.Note;
+import com.example.notes.model.Note;
 
 public interface NoteEventListener {
 

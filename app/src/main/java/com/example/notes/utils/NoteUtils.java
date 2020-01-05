@@ -1,4 +1,4 @@
-package com.example.zvigernotes.utils;
+package com.example.notes.utils;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Zviger Notes</string>
+    <string name="app_name">Notes</string>
     <string name="whats_in_your_mind">Whats in your mind</string>
     <string name="no_notes">No Notes !</string>
     <string name="action_settings">Settings</string>

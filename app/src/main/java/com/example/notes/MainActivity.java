@@ -1,4 +1,4 @@
-package com.example.zvigernotes;
+package com.example.notes;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -21,13 +21,12 @@ import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.zvigernotes.adapters.NotesAdapter;
-import com.example.zvigernotes.callbacks.MainActionModeCallback;
-import com.example.zvigernotes.callbacks.NoteEventListener;
-import com.example.zvigernotes.db.NotesDB;
-import com.example.zvigernotes.db.NotesDao;
-import com.example.zvigernotes.model.Note;
-import com.example.zvigernotes.utils.NoteUtils;
+import com.example.notes.adapters.NotesAdapter;
+import com.example.notes.callbacks.MainActionModeCallback;
+import com.example.notes.callbacks.NoteEventListener;
+import com.example.notes.db.NotesDB;
+import com.example.notes.db.NotesDao;
+import com.example.notes.model.Note;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
@@ -36,7 +35,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
 
-import static com.example.zvigernotes.EditNoteActivity.NOTE_EXTRA_Key;
+import static com.example.notes.EditNoteActivity.NOTE_EXTRA_Key;
 
 public class MainActivity extends AppCompatActivity implements NoteEventListener{
 
@@ -47,20 +46,10 @@ public class MainActivity extends AppCompatActivity implements NoteEventListener
     private NotesAdapter adapter;
     private NotesDao dao;
     private int chackedCount = 0;
-    private MainActionModeCallback actionModeCallback;
-    private int theme;
+    private MainActionModeCallonback actionModeCallback;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        switch (getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK) {
-            case Configuration.UI_MODE_NIGHT_YES:
-                theme = R.style.AppTheme_Dark;
-                break;
-            case Configuration.UI_MODE_NIGHT_NO:
-                theme = R.style.AppTheme;
-                break;
-        }
-        setTheme(theme);
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -142,10 +131,6 @@ public class MainActivity extends AppCompatActivity implements NoteEventListener
                     chackedCount++;
                 else chackedCount--;
 
-                if (chackedCount > 1) {
-                    actionModeCallback.changeShareItemVisible(false);
-                } else actionModeCallback.changeShareItemVisible(true);
-
                 if (chackedCount == 0) {
                     actionModeCallback.getAction().finish();
                 }
@@ -166,8 +151,6 @@ public class MainActivity extends AppCompatActivity implements NoteEventListener
             public boolean onActionItemClicked(ActionMode actionMode, MenuItem menuItem) {
                 if (menuItem.getItemId() == R.id.action_delete_notes)
                     onDeleteMultiNotes();
-                else if (menuItem.getItemId() == R.id.action_share_note)
-                    onShareNote();
 
                 actionMode.finish();
                 return false;
@@ -179,19 +162,6 @@ public class MainActivity extends AppCompatActivity implements NoteEventListener
 
         fab.hide();
         actionModeCallback.setCount(chackedCount + "/" + notes.size());
-    }
-
-    private void onShareNote() {
-
-        Note note = adapter.getCheckedNotes().get(0);
-        Intent share = new Intent(Intent.ACTION_SEND);
-        share.setType("text/plain");
-        String notetext = note.getNoteText() + "\n\n Create on : " +
-                NoteUtils.dateFromLong(note.getNoteDate()) + "\n  By :" +
-                getString(R.string.app_name);
-        share.putExtra(Intent.EXTRA_TEXT, notetext);
-        startActivity(share);
-
     }
 
     private void onDeleteMultiNotes() {
@@ -266,7 +236,7 @@ public class MainActivity extends AppCompatActivity implements NoteEventListener
 
     public void sortNotes(int order, String attr) {
         Collections.sort(notes, new Sorter(order, attr));
-        adapter.notifyItemRangeChanged(0, notes.size());
+        adapter.notifyDataSetChanged();
     }
 
     class Sorter implements Comparator<Note> {

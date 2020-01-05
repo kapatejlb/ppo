@@ -1,4 +1,4 @@
-package com.example.zvigernotes.db;
+package com.example.notes.db;
 
 import androidx.room.Dao;
 import androidx.room.Delete;
@@ -7,7 +7,7 @@ import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 import androidx.room.Update;
 
-import com.example.zvigernotes.model.Note;
+import com.example.notes.model.Note;
 
 import java.util.List;
 

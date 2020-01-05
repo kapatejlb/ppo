@@ -1,19 +1,18 @@
-package com.example.zvigernotes;
+package com.example.notes;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.zvigernotes.db.NotesDB;
-import com.example.zvigernotes.db.NotesDao;
-import com.example.zvigernotes.model.Note;
+import com.example.notes.db.NotesDB;
+import com.example.notes.db.NotesDao;
+import com.example.notes.model.Note;
 
 import java.util.Date;
 import java.util.Objects;
@@ -27,23 +26,12 @@ public class EditNoteActivity extends AppCompatActivity {
 
     private NotesDao dao;
     private Note temp;
-    private int theme;
 
 
     public static final String NOTE_EXTRA_Key = "note_id";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
-        switch (getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK) {
-            case Configuration.UI_MODE_NIGHT_YES:
-                theme = R.style.AppTheme_Dark;
-                break;
-            case Configuration.UI_MODE_NIGHT_NO:
-                theme = R.style.AppTheme;
-                break;
-        }
-        setTheme(theme);
 
         super.onCreate(savedInstanceState);
 

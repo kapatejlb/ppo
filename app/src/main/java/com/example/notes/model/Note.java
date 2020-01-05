@@ -1,4 +1,4 @@
-package com.example.zvigernotes.model;
+package com.example.notes.model;
 
 import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;

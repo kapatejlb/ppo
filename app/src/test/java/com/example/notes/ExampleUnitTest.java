@@ -1,4 +1,4 @@
-package com.example.zvigernotes;
+package com.example.notes;
 
 import org.junit.Test;
 

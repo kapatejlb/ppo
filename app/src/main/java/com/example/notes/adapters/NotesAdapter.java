@@ -1,4 +1,4 @@
-package com.example.zvigernotes.adapters;
+package com.example.notes.adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -10,10 +10,10 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.zvigernotes.R;
-import com.example.zvigernotes.callbacks.NoteEventListener;
-import com.example.zvigernotes.model.Note;
-import com.example.zvigernotes.utils.NoteUtils;
+import com.example.notes.R;
+import com.example.notes.callbacks.NoteEventListener;
+import com.example.notes.model.Note;
+import com.example.notes.utils.NoteUtils;
 
 import java.util.ArrayList;
 import java.util.List;

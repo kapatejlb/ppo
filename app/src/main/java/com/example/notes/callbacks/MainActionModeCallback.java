@@ -1,23 +1,21 @@
-package com.example.zvigernotes.callbacks;
+package com.example.notes.callbacks;
 
 import android.view.ActionMode;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.example.zvigernotes.R;
+import com.example.notes.R;
 
 
 public abstract class MainActionModeCallback implements ActionMode.Callback {
     private ActionMode action;
     private MenuItem countItem;
-    private MenuItem shareItem;
 
     @Override
     public boolean onCreateActionMode(ActionMode actionMode, Menu menu) {
         actionMode.getMenuInflater().inflate(R.menu.main_action_mode, menu);
         this.action = actionMode;
         this.countItem = menu.findItem(R.id.action_checked_count);
-        this.shareItem = menu.findItem(R.id.action_share_note);
         return true;
     }
 
@@ -36,9 +34,6 @@ public abstract class MainActionModeCallback implements ActionMode.Callback {
             this.countItem.setTitle(chackedCount);
     }
 
-    public void changeShareItemVisible(boolean b) {
-        shareItem.setVisible(b);
-    }
 
     public ActionMode getAction() {
         return action;
